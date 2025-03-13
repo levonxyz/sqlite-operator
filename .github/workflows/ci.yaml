@@ -1,0 +1,38 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.24'
+
+    - name: Install dependencies
+      run: go mod tidy
+
+    - name: Lint code
+      uses: golangci/golangci-lint-action@v3
+      with:
+        version: latest
+
+    - name: Build
+      run: go build -v ./...
+      
+    - name: Test
+      run: go test -v ./...
+
