@@ -13,7 +13,7 @@ type Kubernetes struct {
 	clientset *k.Clientset
 }
 
-// NewKubernetesClient creates a new client by using a kubeconfig,
+// New creates a new client by using a kubeconfig,
 // or by using an inClusterConfig if the kubeconfig is not provided.
 func New(kubeconfig string) (*Kubernetes, error) {
 	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
