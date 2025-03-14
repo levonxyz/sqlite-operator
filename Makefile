@@ -1,6 +1,9 @@
 run:
 	go run ./cmd/main.go
 
+build:
+	go build -o bin/sqlite-operator ./cmd
+
 check:
 	staticcheck ./...
 
